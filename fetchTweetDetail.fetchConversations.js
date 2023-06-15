@@ -50,6 +50,7 @@
     }
     data.threaded_conversation_with_injections_v2.instructions?.filter((i) => (i.type == 'TimelineAddEntries'))[0]?.entries?.filter((e) => (e.entryId.startsWith('tweet-')))?.map((t) => (t.content.itemContent.tweet_results.result))?.forEach((t) => (focalTweet.push(t)));
     data_cursor = data.threaded_conversation_with_injections_v2.instructions.filter((i) => (i.type == 'TimelineAddEntries'))[0]?.entries?.filter((e) => (e.entryId.startsWith('cursor-bottom-')))[0]?.content?.itemContent?.value;
+    data_cursor = data_cursor || data.threaded_conversation_with_injections_v2.instructions.filter((i) => (i.type == 'TimelineAddEntries'))[0]?.entries?.filter((e) => (e.entryId.startsWith('cursor-showmorethreads-')))[0]?.content?.itemContent?.value;
 
     console.log({ cursor, data_cursor });
 
