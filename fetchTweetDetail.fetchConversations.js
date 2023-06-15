@@ -2,16 +2,14 @@
 // Developer tools -> Network -> Filter URLs (Following) -> Stack Trace -> fetchTweetDetail
 (async (tweet_id) => {
   const focalTweet = [];
-  const focalTweetAuthor = [];
   const conversations = [];
   let cursor = undefined;
-  let count = 20;
   let data_cursor = '';
   function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
   const fetchTweetDetail = async (tweet_id, cursor) => {
-    console.log({ tweet_id, cursor, count });
+    console.log({ tweet_id, cursor });
     const results = await e.graphQL(
       s(),
       {
@@ -43,7 +41,7 @@
   do {
     await sleep(1000);
     try {
-      data = await fetchTweetDetail(tweet_id, cursor, count);
+      data = await fetchTweetDetail(tweet_id, cursor);
     } catch (e) {
       console.error(e.toString());
       if (e.toString().includes("Too Many Requests")) {
